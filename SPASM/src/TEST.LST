@@ -1,0 +1,58 @@
+
+
+                     --- SPASM 1.0, Copyright Harold Almon ---
+
+              LOCATION       LABEL     OPERATOR  OPER 1    OPER 2
+
+                0000                   ORG       100H
+                0100         CR        EQU       0DH
+                0100         START     LDA       A         CR
+                0102                   STA       A         [BUFF1]
+                0105                   LDA       A         [BUFF2]
+                0108                   JMP       BEGIN
+                010B         BUFF1     DS        48
+                013B         CHECK     DS        1
+                013C                   ORG       200H
+                0200         BEGIN     LDX       X         [MESSAGE1]
+                0204                   LDX       X         MESSAGE1
+                0207                   LDA       B         9
+                0209                   INT       21H       FUNCTION
+                020B                   JL        NEXT
+                020D                   LDA       B         0AH
+                020F                   STA       B         [BUFF1]
+                0213                   LDA       B         [BUFF2]
+                0217         NEXT      ADD       B         10
+                021A                   ADD       B         [BUFF2]
+                021E                   LDX       Y         [MESSAGE1]
+                0222                   NEG       B
+                0224                   JG        CONT
+                0226                   ADD       A         -2
+                0228                   ADD       A         B
+                022A                   ADD       A         [BUFF1]
+                022E         CONT      LDX       Y         MESSAGE1
+                0231                   LDA       A         [Y]
+                0233                   INX
+                0234                   ADD       A         [Y]
+                0236                   NEG       A         NEGATE
+                0238                   INX
+                0239                   STA       A         [Y]
+                023B         LF        EQU       0AH
+                023B                   LDA       B         4CH
+                023D                   LDA       A         0
+                023F                   INT       21H       FUNCTION
+                0241         BUFF2     DS        10H
+                0251         MESSAGE1  DB        CR        0AH
+                0262                   DB        ' Program'0DH
+                026D                   END
+
+
+              Symbol          Value       Src Line
+
+               BUFF2           0241             37
+               START           0100              3
+               CHECK           013B              8
+               BEGIN           0200             10
+                NEXT           0217             18
+                CONT           022E             26
+               BUFF1           010B              7
+            MESSAGE1           0251             38
