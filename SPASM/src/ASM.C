@@ -1,3 +1,8 @@
+/*	This file has embedded tabs that causing formatting problems. 
+	Use this link to view the file and fix most tab issues: 
+		https://github.com/HaroldAlmon/8086Assembler/blob/master/SPASM/src/ASM.C?ts=4 
+*/
+
 /************************************************************************
 *                                                                       *
 *               Project #2                                              *
